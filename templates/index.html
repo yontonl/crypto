@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KR Crypto</title>
+</head>
+<body>
+    <form action="/decode" method="post">
+        <label>
+            <input type="text" name="text" placeholder="Enter text">
+        </label>
+        <input type="submit" value="Decode">
+        {% if decoded %}<span>{{ decoded }}</span>{% endif %}
+    </form>
+    <form action="/encode" method="post">
+        <label>
+            <input type="text" name="text" placeholder="Enter text">
+        </label>
+        <input type="submit" value="Encode">
+        {% if encoded %}<span>{{ encoded }}</span>{% endif %}
+    </form>
+</body>
+</html>
