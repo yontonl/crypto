@@ -5,19 +5,53 @@
     <title>KR Crypto</title>
 </head>
 <body>
-    <form action="/decode" method="post">
+    <script>
+    function decode() {
+        let text = document.getElementById("decode").value;
+        fetch('http://localhost/decode/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                text: text
+            })
+        }).then(response => response.text())
+            .then(data => {
+                document.getElementById("decoded").innerText = data;
+            }).catch(error => console.error(error));
+    }
+    function encode() {
+        let text = document.getElementById("decode").value;
+        fetch('http://localhost/encode/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                text: text
+            })
+        }).then(response => response.text())
+            .then(data => {
+                document.getElementById("encoded").innerText = data;
+            }).catch(error => console.error(error));
+    }
+    </script>
+    <div style="margin: 5px">
         <label>
+            Decode:
+            <input id="decode" type="text" name="text" placeholder="Enter text">
+        </label>
+        <button onclick="decode()">decode</button>
+        <span id="decoded"></span>
+    </div>
+    <div style="margin: 5px">
+        <label>
+            Encode:
             <input type="text" name="text" placeholder="Enter text">
         </label>
-        <input type="submit" value="Decode">
-        {% if decoded %}<span>{{ decoded }}</span>{% endif %}
-    </form>
-    <form action="/encode" method="post">
-        <label>
-            <input type="text" name="text" placeholder="Enter text">
-        </label>
-        <input type="submit" value="Encode">
-        {% if encoded %}<span>{{ encoded }}</span>{% endif %}
-    </form>
+        <button onclick="encode()">decode</button>
+        <span id="encoded"></span>
+    </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template
+from flask_cors import CORS, cross_origin
 
 from Crypto.Cipher import AES
 import base64
@@ -26,29 +27,26 @@ def myDeCode(dataStr, key, iv):
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    decoded = request.args.get('decoded')
-    encoded = request.args.get('encoded')
-    return render_template('index.html', decoded=decoded, encoded=encoded)
+    return render_template('index.html')
 
 
-@app.route('/decode/', methods=['POST', 'GET'])
+@app.route('/decode/', methods=['POST'])
+@cross_origin()
 def decode():
     if request.method == 'POST':
-        return redirect(url_for('index', decoded=myDeCode(request.form.get('text'), key, iv)))
-    else:
-        return redirect(url_for('index'))
+        return myDeCode(request.json.get('text'), key, iv)
 
 
-@app.route('/encode/', methods=['POST', 'GET'])
+@app.route('/encode/', methods=['POST'])
+@cross_origin()
 def encode():
     if request.method == 'POST':
-        return redirect(url_for('index', encoded=myEnCode(request.form.get('text'), key, iv)))
-    else:
-        return redirect(url_for('index'))
+        return myEnCode(request.json.get('text'), key, iv)
 
 
 if __name__ == '__main__':
