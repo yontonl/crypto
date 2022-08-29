@@ -8,7 +8,7 @@
     <script>
     function decode() {
         let text = document.getElementById("decode").value;
-        fetch('http://localhost/decode/', {
+        fetch('http://192.168.10.243/decode/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@
     }
     function encode() {
         let text = document.getElementById("decode").value;
-        fetch('http://localhost/encode/', {
+        fetch('http://192.168.10.243/encode/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
