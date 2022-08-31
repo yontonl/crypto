@@ -22,7 +22,7 @@
             }).catch(error => console.error(error));
     }
     function encode() {
-        let text = document.getElementById("decode").value;
+        let text = document.getElementById("encode").value;
         fetch('http://192.168.10.243/encode/', {
             method: 'POST',
             headers: {
