@@ -1,57 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>KR Crypto</title>
 </head>
+
 <body>
-    <script>
-    function decode() {
-        let text = document.getElementById("decode").value;
-        fetch('http://192.168.10.243/decode/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                text: text
-            })
-        }).then(response => response.text())
-            .then(data => {
-                document.getElementById("decoded").innerText = data;
-            }).catch(error => console.error(error));
-    }
-    function encode() {
-        let text = document.getElementById("encode").value;
-        fetch('http://192.168.10.243/encode/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                text: text
-            })
-        }).then(response => response.text())
-            .then(data => {
-                document.getElementById("encoded").innerText = data;
-            }).catch(error => console.error(error));
-    }
-    </script>
+    <script src="/static/index.js"></script>
     <div style="margin: 5px">
-        <label>
-            Decode:
-            <input id="decode" type="text" name="text" placeholder="Enter text">
-        </label>
-        <button onclick="decode()">decode</button>
-        <span id="decoded"></span>
+        <div>
+            <label>
+                Decode:
+                <input id="decode" type="text" name="text" placeholder="Enter text">
+            </label>
+            <button onclick="decode()">decode</button>
+        </div>
+        <br/>
+        <textarea id="decoded"></textarea>
     </div>
+    <br>
     <div style="margin: 5px">
-        <label>
-            Encode:
-            <input id="encode" type="text" name="text" placeholder="Enter text">
-        </label>
-        <button onclick="encode()">encode</button>
-        <span id="encoded"></span>
+        <div>
+            <label>
+                Encode:
+                <input id="encode" type="text" name="text" placeholder="Enter text">
+            </label>
+            <button onclick="encode()">encode</button>
+        </div>
+        <br/>
+        <textarea id="encoded"></textarea>
     </div>
 </body>
+
 </html>
