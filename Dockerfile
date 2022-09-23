@@ -13,10 +13,11 @@ ENV PYTHONUNBUFFERED=1
 
 # Install pip requirements
 COPY requirements.txt .
+COPY start.sh .
 RUN python -m pip install -r requirements.txt -i https://mirrors.bfsu.edu.cn/pypi/web/simple
 
 WORKDIR /app
 COPY . /app
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]
+ENTRYPOINT ["bash", "./start.sh"]
