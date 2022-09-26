@@ -3,7 +3,7 @@ function decode() {
   if (text.startsWith('kr_')) {
     text = text.slice(3)
   }
-  fetch('http://192.168.10.243/decode/', {
+  fetch('/decode/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ function decode() {
 
 function encode() {
   let text = document.getElementById("encode").value;
-  fetch('http://192.168.10.243/encode/', {
+  fetch('/encode/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
