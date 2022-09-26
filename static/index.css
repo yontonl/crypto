@@ -11,3 +11,7 @@ button,
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+textarea {
+  font-family: SF Mono, Consolas, monospace;
+}
